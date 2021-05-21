@@ -51,6 +51,16 @@ public class LinkedList {
 		}
 	}
 	
+	public void appendAfter(Node prev_node, int data) {
+  	     if(prev_node == null) {
+  	    	 System.out.println("Previous node shouldn't be null..");
+  	     }
+  	 
+  	     Node new_node = new Node(data);
+  	     new_node.next = prev_node.next;
+  	     prev_node.next = new_node;
+	} 	
+	
 	void printList()
 	{
 		 Node currNode = head; 
@@ -67,8 +77,9 @@ public class LinkedList {
 		LinkedList object = new LinkedList();
 		
 		object.append(56);
-		object.append(30);
 		object.append(70);
+		
+		object.appendAfter(object.head,30);
 		
 		object.printList();
 	}
