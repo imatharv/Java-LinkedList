@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.Scanner;
+
 public class LinkedList {
 	Node head;
 	
@@ -90,6 +92,27 @@ public class LinkedList {
 		last.next = temp.next;
 	}
 	
+	public void searchNode(int data)
+    {
+        Node n = head;
+        int count = 1;
+        int flag = 0;
+        while(n != null)
+        {	   
+        	if(n.data == data) {
+	       		flag = 1;
+	       		break;
+        	}
+        	count = count+1;
+        	n = n.next;   
+        }
+        
+        if(flag==1)
+        	System.out.println("Node with value " + data + " is found at position " + count);
+        else
+        	System.out.println("Element is not present in the list");  
+    }
+	
 	void printList()
 	{
 		 Node currNode = head; 
@@ -102,6 +125,7 @@ public class LinkedList {
 	}
 	
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
 		LinkedList object = new LinkedList();
 		object.append(56);
 		object.append(70);
@@ -117,5 +141,8 @@ public class LinkedList {
 		object.deleteLast();
 		System.out.println("\nAfter deleting the last element,");
 		object.printList();
+		System.out.println("\nEnter the element to search: ");
+		int node = scanner.nextInt();
+		object.searchNode(node);
 	}
 }
