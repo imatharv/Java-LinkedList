@@ -28,12 +28,18 @@ public class LinkedList {
 			head = new_node;
 		}
 		else {
-			Node currNode = head;
-			while(currNode.next != null) {
-				currNode = currNode.next;
+			Node temp = head;
+			while(temp.next != null) {
+				temp = temp.next;
 			}
-			currNode.next = new_node;
+			temp.next = new_node;
 		}
+	}
+	
+	public void addToFront(int data) {
+		Node new_node = new Node(data);
+		new_node.next = head;
+	 	head = new_node;	
 	}
 	
 	public void append(int data) {
@@ -43,11 +49,11 @@ public class LinkedList {
 			head = new_node;
 		}
 		else {
-			Node currNode = head;
-			while(currNode.next != null) {
-				currNode = currNode.next;
+			Node temp = head;
+			while(temp.next != null) {
+				temp = temp.next;
 			}
-			currNode.next = new_node;
+			temp.next = new_node;
 		}
 	}
 	
@@ -70,6 +76,20 @@ public class LinkedList {
 		temp.next = null;
 	}
 	
+	public void deleteLast() {
+		if(head == null) {
+			System.out.println("List is empty");
+		}
+		Node last = head;
+		Node temp = null;
+		while(last.next != null) {
+			temp = last;
+			last = last.next;
+		}
+		temp.next = null;
+		last.next = temp.next;
+	}
+	
 	void printList()
 	{
 		 Node currNode = head; 
@@ -82,18 +102,20 @@ public class LinkedList {
 	}
 	
 	public static void main(String[] args) {
-		
 		LinkedList object = new LinkedList();
-		
 		object.append(56);
 		object.append(70);
-		
-		object.appendAfter(object.head,30);
-		
+		object.append(45);
+		object.append(17);
 		object.printList();
-		
+		object.appendAfter(object.head,30);
+		System.out.println("\nAfter appending an element after the head element,");
+		object.printList();
 		object.deleteFirst();
-		
+		System.out.println("\nAfter deleting the first element,");
+		object.printList();
+		object.deleteLast();
+		System.out.println("\nAfter deleting the last element,");
 		object.printList();
 	}
 }
