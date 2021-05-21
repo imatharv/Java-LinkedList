@@ -21,6 +21,21 @@ public class LinkedList {
 		System.out.println();
 	}
 	
+	public void add(int data) {
+		Node new_node = new Node(data);
+		new_node.next = null;
+		if(head == null) {
+			head = new_node;
+		}
+		else {
+			Node currNode = head;
+			while(currNode.next != null) {
+				currNode = currNode.next;
+			}
+			currNode.next = new_node;
+		}
+	}
+	
 	void printList()
 	{
 		 Node currNode = head; 
@@ -36,12 +51,9 @@ public class LinkedList {
 		
 		LinkedList object = new LinkedList();
 		
-		object.head = new Node(56);
-		Node second = new Node(30);
-		Node third = new Node(70);
-		
-		object.head.next = second;
-		second.next = third;
+		object.add(56);
+		object.add(30);
+		object.add(70);
 		
 		object.printList();
 	}
