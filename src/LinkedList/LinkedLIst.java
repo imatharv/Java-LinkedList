@@ -107,19 +107,48 @@ public class LinkedList {
         	n = n.next;   
         }
         
-        if(flag==1)
+        if(flag == 1)
         	System.out.println("Node with value " + data + " is found at position " + count);
         else
         	System.out.println("Element is not present in the list");  
     }
 	
+	public void deleteByElement(int data) {
+		Node temp=head;
+	   	  Node prev=null;
+	   	  if(temp != null && temp.data == data) {
+	   		  head = temp.next;
+	   	  }
+	   	  while(temp != null && temp.data != data) {
+	   		  prev = temp;
+	   		  temp = temp.next;
+	   	  }	  
+	   	  if(temp != null) {
+	   		  prev.next = temp.next;
+	   	  }
+	   	  if(temp == null) {
+	   		  System.out.println(data+ " not found");
+	   	  }
+	}
+	
+	public int size()
+	{
+		Node temp = head; 
+		int count = 0;
+		while (temp != null) { 
+			count++;
+			temp = temp.next; 
+		}
+		return count; 
+	}
+	
 	void printList()
 	{
-		 Node currNode = head; 
+		 Node temp = head; 
 		 System.out.println("LinkedList: "); 
-	     while (currNode != null) { 
-	    	 System.out.print(currNode.data + " -> ");        
-	    	 currNode = currNode.next; 
+	     while (temp != null) { 
+	    	 System.out.print(temp.data + " -> ");        
+	    	 temp = temp.next; 
 	     }
 	     System.out.println();
 	}
@@ -147,6 +176,11 @@ public class LinkedList {
 		object.appendAfter(object.head.next,40);
 		System.out.println("\nAfter appending an element after the element next to head,");
 		object.printList();
+		object.deleteByElement(40);
+		System.out.println("\nAfter deleting an element after the element next to head,");
+		object.printList();
+		System.out.println("\nTotal size of linked list is,");
+		System.out.println(object.size());
 	}
 	
 }
