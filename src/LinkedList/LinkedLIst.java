@@ -36,6 +36,21 @@ public class LinkedList {
 		}
 	}
 	
+	public void append(int data) {
+		Node new_node = new Node(data);
+		new_node.next = null;
+		if(head == null) {
+			head = new_node;
+		}
+		else {
+			Node currNode = head;
+			while(currNode.next != null) {
+				currNode = currNode.next;
+			}
+			currNode.next = new_node;
+		}
+	}
+	
 	void printList()
 	{
 		 Node currNode = head; 
@@ -51,9 +66,9 @@ public class LinkedList {
 		
 		LinkedList object = new LinkedList();
 		
-		object.add(56);
-		object.add(30);
-		object.add(70);
+		object.append(56);
+		object.append(30);
+		object.append(70);
 		
 		object.printList();
 	}
